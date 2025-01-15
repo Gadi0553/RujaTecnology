@@ -81,21 +81,22 @@ const Catalogo: React.FC<CatalogoProps> = ({ searchQuery }) => {
         }
     };
 
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const query = event.target.value.toLowerCase();
+    useEffect(() => {
+        fetchProductos();
+    }, []);
+
+    useEffect(() => {
+        // Filtrar productos cuando cambia searchQuery
+        const query = searchQuery.toLowerCase();
         const filtered = productos.filter(producto =>
             producto.nombre.toLowerCase().includes(query)
         );
         setFilteredProductos(filtered);
-    };
+    }, [searchQuery, productos]);
 
     const getImageUrl = (imageName: string) => {
         return `${config.apiurl}/Uploads/${imageName}`;
     };
-
-    useEffect(() => {
-        fetchProductos();
-    }, []);
 
     if (isLoading) {
         return <div className="flex justify-center p-4">Cargando productos...</div>;
@@ -192,8 +193,6 @@ const Catalogo: React.FC<CatalogoProps> = ({ searchQuery }) => {
             )}
         </>
     );
-
 };
 
 export default Catalogo;
-
