@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import apiClient from "../ApiClient";
+import config from "../Config.ts";
 
 interface Producto {
     productoId: number;
@@ -88,7 +89,7 @@ const DetalleProducto = () => {
     };
 
     const getImageUrl = (imageName: string) => {
-        return `https://localhost:7191/Uploads/${imageName}`;
+        return `${config.apiurl}/Uploads/${imageName}`;
     };
 
     const handleImageClick = (index: number) => {
