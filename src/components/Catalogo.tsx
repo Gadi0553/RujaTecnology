@@ -13,11 +13,7 @@ interface Producto {
     cantidad?: number;
 }
 
-interface CatalogoProps {
-    searchQuery: string;
-}
-
-const Catalogo: React.FC<CatalogoProps> = ({ searchQuery }) => {
+const Catalogo: React.FC = () => {
     const navigate = useNavigate();
     const [productos, setProductos] = useState<Producto[]>([]);
     const [filteredProductos, setFilteredProductos] = useState<Producto[]>([]);
@@ -25,9 +21,21 @@ const Catalogo: React.FC<CatalogoProps> = ({ searchQuery }) => {
     const [error, setError] = useState<string | null>(null);
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleProductClick = (productoId: number) => {
         navigate(`/producto/${productoId}`);
+    };
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const query = event.target.value.toLowerCase();
+        setSearchQuery(query);
+
+        // Filtrar productos basado en el query
+        const filtered = productos.filter(producto =>
+            producto.nombre.toLowerCase().includes(query)
+        );
+        setFilteredProductos(filtered);
     };
 
     const getCartKey = () => {
@@ -85,15 +93,6 @@ const Catalogo: React.FC<CatalogoProps> = ({ searchQuery }) => {
         fetchProductos();
     }, []);
 
-    useEffect(() => {
-        // Filtrar productos cuando cambia searchQuery
-        const query = searchQuery.toLowerCase();
-        const filtered = productos.filter(producto =>
-            producto.nombre.toLowerCase().includes(query)
-        );
-        setFilteredProductos(filtered);
-    }, [searchQuery, productos]);
-
     const getImageUrl = (imageName: string) => {
         return `${config.apiurl}/Uploads/${imageName}`;
     };
@@ -109,10 +108,22 @@ const Catalogo: React.FC<CatalogoProps> = ({ searchQuery }) => {
     return (
         <>
             <div className="container mx-auto px-2 sm:px-4 mt-4">
+                {/* Barra de búsqueda móvil */}
+                <div className="flex items-center bg-gray-100 rounded-lg p-2 m-2 sm:hidden border-2 border-orange-400">
+                    <i className="fas fa-search text-gray-400 mr-2"></i>
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        placeholder="Buscar productos..."
+                        className="w-full bg-transparent focus:outline-none text-lg rounded-md py-2 px-4"
+                    />
+                </div>
+
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6 mb-8">
                     {filteredProductos.length === 0 ? (
-                        <div className="w-full text-center text-lg text-red-500">
-                            No se encontraron productos.
+                        <div className="col-span-full text-center text-lg text-red-500">
+                            No se encontraron productos que coincidan con tu búsqueda.
                         </div>
                     ) : (
                         filteredProductos.map(producto => (
@@ -148,8 +159,8 @@ const Catalogo: React.FC<CatalogoProps> = ({ searchQuery }) => {
                                         <p className="text-xs text-gray-500">
                                             {producto.stock > 0 ? (
                                                 <span className="text-green-600">
-                                                En stock ({producto.stock})
-                                            </span>
+                                                    En stock ({producto.stock})
+                                                </span>
                                             ) : (
                                                 <span className="text-red-600">Agotado</span>
                                             )}
