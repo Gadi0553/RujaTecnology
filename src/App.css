@@ -1,0 +1,22 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes moveRight {
+    0%, 100% {
+        transform: translateX(-5px) rotate(180deg);
+    }
+    50% {
+        transform: translateX(5px) rotate(180deg);
+    }
+}
+
+@keyframes moveLeft {
+    0%, 100% {
+        transform: translateX(5px);
+    }
+    50% {
+        transform: translateX(-5px);
+    }
+}
