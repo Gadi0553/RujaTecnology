@@ -315,7 +315,7 @@ const handleSearch = (e) => {
                                 {/* Enlaces siempre visibles */}
                                 <Link to="/catalogo"
                                       className="text-[#FF5722] hover:text-orange-600 transition-colors">
-                                    Catalogo
+                                    Catálogo
                                 </Link>
                                 <Link to="/Covers"
                                       className="text-[#FF5722] hover:text-orange-600 transition-colors">
