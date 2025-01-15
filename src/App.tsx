@@ -25,7 +25,7 @@ import sansum from './assets/images/s22c.jpeg';
 import coverCellImage from './assets/images/cover cell.jpeg';
 import { ChevronRight } from 'lucide-react';
 import MobileHeader from './components/MobileHeader';
-import logo from './assets/images/loguito.jpg';
+import logo from './assets/images/LogoOrigi.png';
 import PageTitle from "./components/PageTitle.tsx";
 import apiClient from "./ApiClient";
 import ProtectedRoute from './components/ProtectedRoute.tsx';
@@ -65,7 +65,7 @@ const HomePage = ({ isLoggedIn, services }) => {
                                 EMPRESA DE TECNOLOGÍA DE LA INFORMACIÓN
                             </h1>
                             <h2 className="text-xl font-bold mb-6 drop-shadow-md">
-                                CASES / CORREAS / COVER PERSONALIZADO / AIRPODS CASE Y MÁS
+                                CASES / CORREAS / COVER PERSONALIZADO / AIRPODS Y MÁS
                             </h2>
                             <div className="space-y-4">
                                 <p className="flex items-center drop-shadow-md">
@@ -75,15 +75,15 @@ const HomePage = ({ isLoggedIn, services }) => {
                                     • Lun a Sab 9:00 am a 7:00 pm
                                 </p>
                                 <p className="flex items-center drop-shadow-md">
-                                    • Dom 9:00 - 1:00
+                                    • Dom 9:00 am - 1:00 pm
                                 </p>
                             </div>
                             <div className="flex items-center justify-center gap-4 mt-8">
                                 <ChevronRight
                                     className="w-10 h-10 text-white animate-pulse"
                                     style={{
-                                        animation: 'moveRight 1.5s ease-in-out infinite',
-                                        transform: 'rotate(180deg)'
+                                        animation: 'moveLeft 1.5s ease-in-out infinite',  // Cambio aquí para la flecha izquierda
+                                        transform: 'rotate(0deg)'  // Cambié la rotación a 0 grados
                                     }}
                                 />
                                 <Link
@@ -95,7 +95,8 @@ const HomePage = ({ isLoggedIn, services }) => {
                                 <ChevronRight
                                     className="w-10 h-10 text-white animate-pulse"
                                     style={{
-                                        animation: 'moveLeft 1.5s ease-in-out infinite'
+                                        animation: 'moveRight 1.5s ease-in-out infinite',  // Cambio aquí para la flecha derecha
+                                        transform: 'rotate(180deg)'  // Aquí mantuve la rotación en 180 grados
                                     }}
                                 />
                             </div>
@@ -521,7 +522,7 @@ const handleSearch = (e) => {
 
                         {/* Developer Section */}
                         <div className="mt-8 text-center">
-                            <p className="font-semibold">Desarrollador:</p>
+
                             <img
                                 src={logo}
                                 alt="Logo del Desarrollador"
