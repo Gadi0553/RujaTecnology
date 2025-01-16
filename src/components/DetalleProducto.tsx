@@ -21,6 +21,8 @@ const DetalleProducto = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const fetchProducto = async () => {
         if (!id) {
@@ -58,8 +60,9 @@ const DetalleProducto = () => {
         const userId = localStorage.getItem('userId');
         return userId ? `carrito_${userId}` : 'carrito_invitado';
     };
+
     const handleAddToCart = (e: React.MouseEvent, producto: Producto) => {
-        e.stopPropagation(); // Prevent navigation when clicking the add to cart button
+        e.stopPropagation();
 
         const carritoKey = getCartKey();
         const carritoGuardado = localStorage.getItem(carritoKey);
@@ -72,20 +75,23 @@ const DetalleProducto = () => {
             if (productoExistente) {
                 if (productoExistente.cantidad && productoExistente.cantidad < producto.stock) {
                     productoExistente.cantidad += 1;
+                    setAlertMessage(`¡Genial! Has añadido otra unidad de ${producto.nombre} a tu carrito 🛍️`);
                 } else {
-                    alert("No hay más stock disponible de este producto");
+                    setAlertMessage('Lo sentimos, no hay más unidades disponibles de este producto 😔');
+                    setShowAlert(true);
                     return;
                 }
             } else {
                 carrito.push({ ...producto, cantidad: 1 });
+                setAlertMessage(`¡Excelente elección! ${producto.nombre} ha sido añadido a tu carrito 🎉`);
             }
         } else {
             carrito = [{ ...producto, cantidad: 1 }];
+            setAlertMessage(`¡Fantástico! ${producto.nombre} es el primer producto en tu carrito 🛒`);
         }
 
         localStorage.setItem(carritoKey, JSON.stringify(carrito));
-        alert("Producto agregado al carrito exitosamente");
-        navigate('/carrito');
+        setShowAlert(true);
     };
 
     const getImageUrl = (imageName: string) => {
@@ -189,10 +195,15 @@ const DetalleProducto = () => {
 
                         <button
                             onClick={(e) => handleAddToCart(e, producto)}
-                            className="flex items-center justify-center bg-amber-400 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-colors w-full lg:w-auto"
+                            disabled={producto.stock === 0}
+                            className={`flex items-center justify-center px-4 py-2 rounded-full transition-colors w-full lg:w-auto ${
+                                producto.stock === 0
+                                    ? 'bg-gray-300 cursor-not-allowed'
+                                    : 'bg-yellow-400 hover:bg-yellow-500'
+                            }`}
                         >
                             <ShoppingCart className="w-5 h-5 mr-2"/>
-                            Añadir al carrito
+                            {producto.stock === 0 ? 'Agotado' : 'Añadir al carrito'}
                         </button>
                     </div>
 
@@ -204,6 +215,26 @@ const DetalleProducto = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Modal personalizado */}
+            {showAlert && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+                    <div className="bg-white rounded-lg p-6 max-w-md w-full transform transition-all shadow-xl">
+                        <div className="text-xl font-bold text-center mb-2">
+                            ¡Producto Agregado!
+                        </div>
+                        <div className="text-center text-gray-600 mb-4">
+                            {alertMessage}
+                        </div>
+                        <button
+                            onClick={() => setShowAlert(false)}
+                            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2 px-4 rounded-full transition-colors duration-200"
+                        >
+                            Continuar Comprando
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
