@@ -298,143 +298,93 @@ const handleSearch = (e) => {
                     handleSearch={handleSearch}
                 />
                 {/* Header */}
-                <header className="w-full bg-white shadow-sm sticky top-0 z-50 hidden lg:block">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <Link to="/">
+                <header className="w-full bg-white shadow-md sticky top-0 z-50 hidden lg:block">
+                    <div className="container mx-auto px-4 py-2">
+                        <div className="flex items-center justify-between h-16">
+                            {/* Logo */}
+                            <div className="flex-shrink-0">
+                                <Link to="/" className="flex items-center">
                                     <img
                                         src={logoss}
                                         alt="RUJA Logo"
-                                        style={{height: '60px', width: 'auto', marginLeft: '-40px'}}
+                                        className="h-12 w-auto"
                                     />
                                 </Link>
                             </div>
 
-                            <nav className="flex items-center space-x-8 ml-auto">
-                                {/* Enlaces siempre visibles */}
-                                <Link to="/catalogo"
-                                      className="text-[#FF5722] hover:text-orange-600 transition-colors">
+                            {/* Navigation */}
+                            <nav className="flex items-center space-x-6 flex-1 justify-center">
+                                <Link to="/catalogo" className="text-orange-500 hover:text-orange-600 font-medium">
                                     Catálogo
                                 </Link>
-                                <Link to="/Covers"
-                                      className="text-[#FF5722] hover:text-orange-600 transition-colors">
+                                <Link to="/Covers" className="text-orange-500 hover:text-orange-600 font-medium">
                                     Covers
                                 </Link>
                                 <Link to="/protectorpantalla"
-                                      className="text-[#FF5722] hover:text-orange-600 transition-colors">
+                                      className="text-orange-500 hover:text-orange-600 font-medium">
                                     Protector de pantalla
                                 </Link>
-
-                                {!isLoggedIn ? (
-                                    <>
-
-                                        {/* Barra de búsqueda y carrito para usuarios logueados */}
-                                        <Link
-                                            to="/carrito"
-                                            className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg shadow-lg hover:from-orange-500 hover:to-orange-700 transition-all space-x-2"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="currentColor"
-                                                className="w-6 h-6"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M3.75 3h1.5l1.65 9.004c.048.26.105.519.17.774A2.25 2.25 0 009.285 15h7.35a2.25 2.25 0 002.215-1.773L21 6H6.31m-2.56 6.004H21M9 21h.008v.008H9V21zm9 0h.008v.008H18V21z"
-                                                />
-                                            </svg>
-                                            <span>Carrito</span>
-                                        </Link>
-
-                                        <div className="relative flex items-center space-x-4">
-                                            <input
-                                                type="text"
-                                                placeholder="Buscar productos en Catalogo..."
-                                                value={searchQueryInput}
-                                                onChange={handleSearch}
-                                                className="pl-4 pr-12 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-[#FF5722] focus:ring-2 focus:ring-[#FF5722] text-lg w-full sm:w-64 md:w-80 transition-all ease-in-out duration-300 shadow-md hover:shadow-lg"
-                                            />
-                                            <Search
-                                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#FF5722] hover:text-[#FF4500] transition-colors duration-200"
-                                                size={20}
-                                            />
-                                        </div>
-
-                                    </>
-                                ) : (
-                                    <>
-                                        {/* Enlaces solo visibles para administradores */}
-                                        {isAdmin && (
-                                            <>
-
-                                                <Link
-                                                    to="/productos"
-                                                    className="text-[#FF5722] hover:text-orange-600 transition-colors"
-                                                >
-                                                    Productos
-                                                </Link>
-                                            </>
-                                        )}
-                                        {/* Barra de búsqueda y carrito para usuarios logueados */}
-                                        <Link
-                                            to="/carrito"
-                                            className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg shadow-lg hover:from-orange-500 hover:to-orange-700 transition-all space-x-2"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="currentColor"
-                                                className="w-6 h-6"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M3.75 3h1.5l1.65 9.004c.048.26.105.519.17.774A2.25 2.25 0 009.285 15h7.35a2.25 2.25 0 002.215-1.773L21 6H6.31m-2.56 6.004H21M9 21h.008v.008H9V21zm9 0h.008v.008H18V21z"
-                                                />
-                                            </svg>
-                                            <span>Carrito</span>
-                                        </Link>
-                                        <div className="relative flex items-center space-x-4 hidden sm:flex ml-10">
-                                            <input
-                                                type="text"
-                                                placeholder="Buscar productos en Catalogo..."
-                                                value={searchQueryInput}
-                                                onChange={handleSearch}
-                                                className="pl-4 pr-12 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-[#FF5722] focus:ring-2 focus:ring-[#FF5722] text-lg w-64 md:w-80 transition-all ease-in-out duration-300 shadow-md hover:shadow-lg"
-                                            />
-                                            <Search
-                                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#FF5722] hover:text-[#FF4500] transition-colors duration-200"
-                                                size={20}
-                                            />
-                                        </div>
-
-
-                                    </>
+                                {isAdmin && (
+                                    <Link to="/productos" className="text-orange-500 hover:text-orange-600 font-medium">
+                                        Productos
+                                    </Link>
                                 )}
+
+                                {/* Cart Button */}
+                                <Link
+                                    to="/carrito"
+                                    className="flex items-center space-x-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white px-4 py-2 rounded-lg hover:from-orange-500 hover:to-orange-700"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                                        />
+                                    </svg>
+                                    <span>Carrito</span>
+                                </Link>
                             </nav>
 
-                            {/* Botón de Perfil */}
-                            {isLoggedIn && (
-                                <div className="absolute top-6 right-12">
+
+                            {/* Right Section */}
+                            <div className="flex items-center space-x-4">
+                                {/* Search Bar */}
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar productos en Catalogo..."
+                                        value={searchQueryInput}
+                                        onChange={handleSearch}
+                                        className="w-64 pl-4 pr-10 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500"
+                                    />
+                                    <Search
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-orange-500"
+                                        size={20}/>
+                                </div>
+
+
+                                {/* Profile Button */}
+                                {isLoggedIn && (
                                     <Link
                                         to="/perfil"
-                                        className="bg-red-600 text-white hover:bg-orange-600 transition-all duration-300 p-2.5 flex items-center justify-center rounded-md shadow-lg border border-transparent hover:border-white"
+                                        className="bg-red-600 hover:bg-orange-600 text-white p-2.5 rounded-md"
                                     >
-                                        <div className="w-5 h-5 flex flex-col justify-between items-center">
-                                            <div className="w-5 h-0.5 bg-white rounded-md"></div>
-                                            <div className="w-5 h-0.5 bg-white rounded-md"></div>
-                                            <div className="w-5 h-0.5 bg-white rounded-md"></div>
+                                        <div className="w-5 h-5 flex flex-col justify-between">
+                                            <div className="w-full h-0.5 bg-white"></div>
+                                            <div className="w-full h-0.5 bg-white"></div>
+                                            <div className="w-full h-0.5 bg-white"></div>
                                         </div>
                                     </Link>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                     </div>
                 </header>
@@ -446,7 +396,6 @@ const handleSearch = (e) => {
                     <Route path="/register" element={<Register/>}/>
 
 
-
                     <Route
                         path="/productos"
                         element={
@@ -454,7 +403,7 @@ const handleSearch = (e) => {
                                 isAuthenticated={isLoggedIn}
                                 isAdmin={true}
                             >
-                                <Productos />
+                                <Productos/>
                             </ProtectedRoute>
                         }
                     />
