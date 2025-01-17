@@ -299,6 +299,7 @@ const handleSearch = (e) => {
                 />
                 {/* Header */}
                 <header className="w-full bg-white shadow-md sticky top-0 z-50 hidden lg:block">
+                    <meta name="google-site-verification" content="_2uk-2NGdK6m0mVjCp3mwRTi5Q0g_yoeVd5iN-L4f_U"/>
                     <div className="container mx-auto px-4 py-2">
                         <div className="flex items-center justify-between h-16">
                             {/* Logo */}
