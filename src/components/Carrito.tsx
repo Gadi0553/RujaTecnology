@@ -193,7 +193,7 @@ const Carrito = () => {
 
                                     <div className="flex justify-between mt-4">
                                         <a
-                                            href={`https://wa.me/18094784211?text=${encodeURIComponent(
+                                            href={`https://wa.me/18093765450?text=${encodeURIComponent(
                                                 generarMensajeWhatsApp(producto)
                                             )}`}
                                             target="_blank"
@@ -237,7 +237,7 @@ const Carrito = () => {
 
                     <div className="flex justify-end mt-6">
                         <a
-                            href={`https://wa.me/18094784211?text=${encodeURIComponent(
+                            href={`https://wa.me/18093765450?text=${encodeURIComponent(
                                 generarMensajePagoTotal()
                             )}`}
                             target="_blank"
