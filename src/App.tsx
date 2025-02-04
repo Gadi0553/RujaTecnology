@@ -435,7 +435,7 @@ const handleSearch = (e) => {
                         <div className="flex justify-center mt-4 space-x-6">
                             {/* Instagram Link */}
                             <a
-                                href="https://www.instagram.com/ruja.exclusividades/?hl=es"
+                                href="https://www.instagram.com/rujatechnology_eirl?igsh=am1hMWwzYjk2ejg1&utm_source=qr"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:opacity-80"
