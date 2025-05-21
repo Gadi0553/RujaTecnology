@@ -116,7 +116,7 @@ const DetalleProducto = () => {
             `*${producto.nombre}*\n` +
             `💰 Precio: ${formattedPrice}\n\n`;
 
-        const whatsappNumber = "1-809-376-5450";
+        const whatsappNumber = "1-809-3765450";
         const cleanNumber = whatsappNumber.replace(/\D/g, '');
 
         return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(mensaje)}`;
