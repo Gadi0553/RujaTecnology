@@ -89,6 +89,7 @@ const Covers: React.FC = () => {
         const query = event.target.value.toLowerCase();
         setSearchQuery(query);
 
+        // Filtrar productos cuando el usuario escriba algo
         const filtered = productos.filter((producto) =>
             producto.nombre.toLowerCase().includes(query)
         );
@@ -102,6 +103,14 @@ const Covers: React.FC = () => {
     useEffect(() => {
         fetchProductos();
     }, []);
+
+    useEffect(() => {
+        // Vuelve a aplicar el filtro cada vez que los productos cambian o cuando cambia la búsqueda
+        const filtered = productos.filter((producto) =>
+            producto.nombre.toLowerCase().includes(searchQuery)
+        );
+        setFilteredProductos(filtered);
+    }, [searchQuery, productos]);
 
     if (isLoading) {
         return <div className="flex justify-center p-4">Cargando covers...</div>;

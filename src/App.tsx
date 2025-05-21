@@ -16,12 +16,13 @@ import "./App.css";
 import re5 from './assets/images/re5.jpg';
 import re7 from './assets/images/re7.jpg';
 import re3 from './assets/images/re3.png';
-import seercicio from './assets/images/seviciotecni.jpg'
+import cell1 from './assets/images/cell1.jpg'
 
 import tecnico from'./assets/images/tecnico.jpg';
 import logoss from './assets/images/se.png';
-import covercell from './assets/images/telefonoss.jpeg';
-import sansum from './assets/images/s22c.jpeg';
+import cell2 from './assets/images/celll2.jpg';
+
+import cell4 from './assets/images/cell4.jpg';
 import coverCellImage from './assets/images/cover cell.jpeg';
 import { ChevronRight } from 'lucide-react';
 import MobileHeader from './components/MobileHeader';
@@ -35,9 +36,10 @@ import ProtectedRoute from './components/ProtectedRoute.tsx';
 const HomePage = ({ isLoggedIn, services }) => {
     // Array de imágenes importadas
     const images = [
-        seercicio,
-        covercell,
-        sansum,
+        cell1,
+        cell2,
+        cell4,
+
     ];
 
     // Estado para manejar la imagen actual
@@ -272,19 +274,19 @@ const App = () => {
     };
 
 
-useEffect(() => {
-    const timeoutId = setTimeout(() => {
-        setDebouncedSearchQuery(searchQueryInput);
-    }, 300);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setDebouncedSearchQuery(searchQueryInput);
+        }, 300);
 
-    return () => clearTimeout(timeoutId);
-}, [searchQueryInput]);
+        return () => clearTimeout(timeoutId);
+    }, [searchQueryInput]);
 
 
 
-const handleSearch = (e) => {
-    setSearchQueryInput(e.target.value); // Esto actualiza inmediatamente el input
-};
+    const handleSearch = (e) => {
+        setSearchQueryInput(e.target.value); // Esto actualiza inmediatamente el input
+    };
 
     return (
         <Router>
@@ -325,6 +327,7 @@ const handleSearch = (e) => {
                                       className="text-orange-500 hover:text-orange-600 font-medium">
                                     Protector de pantalla
                                 </Link>
+
                                 {isAdmin && (
                                     <Link to="/productos" className="text-orange-500 hover:text-orange-600 font-medium">
                                         Productos
@@ -435,7 +438,7 @@ const handleSearch = (e) => {
                         <div className="flex justify-center mt-4 space-x-6">
                             {/* Instagram Link */}
                             <a
-                                href="https://www.instagram.com/ruja.exclusividades/?hl=es"
+                                href="https://www.instagram.com/rujatechnology_eirl?igsh=am1hMWwzYjk2ejg1&utm_source=qr"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:opacity-80"
@@ -491,4 +494,3 @@ const handleSearch = (e) => {
 };
 
 export default App;
-
