@@ -164,15 +164,15 @@ const HomePage = ({ isLoggedIn, services }) => {
                         {/* Right Video */}
                         <div className="md:w-1/2 flex justify-center items-center">
                             <video
-                                src="/assets/images/rujaaav.mp4"
-                                alt="Cell Phone Repair and Sale"
-                                className="w-full h-auto max-w-md object-cover rounded-lg shadow-2xl border-4 border-white"
+                                src="https://res.cloudinary.com/dlxfs4itv/video/upload/v1748397190/vids_mygth7.mp4"
+                                className="w-full h-auto max-w-sm object-cover rounded-lg shadow-2xl border-4 border-white"
                                 controls
                                 autoPlay
                                 muted
                                 loop
                             />
                         </div>
+
                     </div>
                 </div>
             </section>
