@@ -13,17 +13,17 @@ import Catalogo from './components/Catalogo';
 import Covers from './components/Covers';
 import Usuarios from './components/Usuarios';
 import "./App.css";
-import re5 from './assets/images/re5.jpg';
-import re7 from './assets/images/re7.jpg';
-import re3 from './assets/images/re3.png';
+import re5 from './assets/images/ru1.jpg';
+import re7 from './assets/images/ru3.jpg';
+import re3 from './assets/images/ru2.jpg';
 import cell1 from './assets/images/cell1.jpg'
 
-import tecnico from'./assets/images/tecnico.jpg';
+import tecnico from'./assets/images/r3.jpg';
 import logoss from './assets/images/se.png';
 import cell2 from './assets/images/celll2.jpg';
 
 import cell4 from './assets/images/cell4.jpg';
-import coverCellImage from './assets/images/cover cell.jpeg';
+
 import { ChevronRight } from 'lucide-react';
 import MobileHeader from './components/MobileHeader';
 import logo from './assets/images/LogoOrigi.png';
@@ -121,10 +121,11 @@ const HomePage = ({ isLoggedIn, services }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
                     {services.map((service, index) => (
                         <div key={index} className="relative group overflow-hidden">
+
                             <img
                                 src={service.image}
                                 alt={`Service ${index + 1}`}
-                                className="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-110"
+                                className="w-full h-64 object-contain transform transition-transform duration-300 group-hover:scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent">
                                 <p className="absolute bottom-4 left-4 right-4 text-white text-sm">
@@ -159,12 +160,17 @@ const HomePage = ({ isLoggedIn, services }) => {
                             </p>
                         </div>
 
-                        {/* Right Image */}
+
+                        {/* Right Video */}
                         <div className="md:w-1/2 flex justify-center items-center">
-                            <img
-                                src={coverCellImage}
+                            <video
+                                src="/assets/images/rujaaav.mp4"
                                 alt="Cell Phone Repair and Sale"
                                 className="w-full h-auto max-w-md object-cover rounded-lg shadow-2xl border-4 border-white"
+                                controls
+                                autoPlay
+                                muted
+                                loop
                             />
                         </div>
                     </div>
@@ -246,19 +252,19 @@ const App = () => {
 
     const services = [
         {
-            title: "La mejor reparación la tenemos aquí en Ruja.",
+
             image: re5
         },
         {
-            title: "Reparamos tu celular como nuevo, rápido y seguro.",
+
             image: tecnico
         },
         {
-            title: "Expertos en reparación y cuidado de tu celular.",
+
             image: re7
         },
         {
-            title: "La mejor solución para tu teléfono, garantizada.",
+
             image: re3
         }
     ];
