@@ -465,7 +465,7 @@ const App = () => {
                             </a>
                             {/* WhatsApp Link */}
                             <a
-                                href="https://wa.me/18094784211"
+                                href="https://wa.me/18093765450"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:opacity-80"
